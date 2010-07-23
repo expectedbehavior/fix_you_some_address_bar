@@ -18,11 +18,11 @@ Usage
 
 By default, this plugin will atuomatically fix renders from create/update actions done by put/post request types.  It uses the action name passed into the render call to determine the correct url that the user should be seeing.
 
-You can modify what actions this plugin works on by changing the altering the conditions for the after_filter fix_you_some_address_bar. By default it is
+You can modify what actions this plugin works on by altering the conditions for the after_filter fix_you_some_address_bar. By default it is:
   
   after_filter :fix_you_some_address_bar, :only => [:create, :update]
 
-You can modify the request types dealt with by setting fix_you_some_address_bar_request_types.  By default it is
+You can modify the request types dealt with by setting fix_you_some_address_bar_request_types.  By default it is:
 
   fix_you_some_address_bar_request_types :post, :put
 
