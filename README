@@ -1,0 +1,39 @@
+FixYouSomeAddressBar
+====================
+
+You know all those times when you have submitted a form, but there were errors?  And the url, instead of being
+  
+  http://myawesomeapp.com/foobar/new
+
+is now
+  
+  http://myawesomeapp.com/foobar
+
+because that was the path of the PUT or POST action?  And so now, the address bar actually has the wrong path, and if you hit enter, on the address bar you will either go to the wrong page, or get the dreaded "Only PUT/POST requests allowed" error?
+
+Well, no more!  Thanks to a new HTML5 javascript function (replaceState), we can fix that url right up to the correct one.  And that is exactly what this plugin does.
+
+Usage
+=====
+
+By default, this plugin will atuomatically fix renders from create/update actions done by put/post request types.  It uses the action name passed into the render call to determine the correct url that the user should be seeing.
+
+You can modify what actions this plugin works on by changing the altering the conditions for the after_filter fix_you_some_address_bar. By default it is
+  
+  after_filter :fix_you_some_address_bar, :only => [:create, :update]
+
+You can modify the request types dealt with by setting fix_you_some_address_bar_request_types.  By default it is
+
+  fix_you_some_address_bar_request_types :post, :put
+
+And you can explicitly set a path the set in the user's address bar through the fixed_address_bar_path method (this overrides the path the plugin determines atumatically - and this path is only used if the action/request type match the previous conditions):
+
+  self.fixed_address_bar_path = "/my/correct/path"
+
+Caveats
+=======
+
+Since this is done by a new HTML5 javascript function, it only works in Chrome and Safari at the moment.
+Firefox 4 will also have support for it, and who knows if IE ever will.
+
+Copyright (c) 2010 ExpectedBehavior, released under the MIT license
