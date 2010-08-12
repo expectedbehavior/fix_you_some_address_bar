@@ -11,7 +11,10 @@ module ExpectedBehavior
     
     def default_template_name_with_set_fixed_address_bar_path(action_name = self.action_name)
       if action_name != self.action_name && self.fixed_address_bar_path.blank?
-        self.fixed_address_bar_path = url_for(:controller => controller_name, :action => action_name, :only_path => true)
+        #make sure that there is actually a route for the given controller/action combo
+        unless ActionController::Routing::Routes.routes_for_controller_and_action_and_keys(controller_name, action_name, { }).empty?
+          self.fixed_address_bar_path = url_for(:controller => controller_name, :action => action_name, :only_path => true)
+        end
       end
       default_template_name_without_set_fixed_address_bar_path(action_name)
     end
